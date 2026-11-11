@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FaFlask, FaTint, FaHeartbeat, FaMicroscope, FaHome,
@@ -9,6 +10,14 @@ import {
 import { MdBloodtype, MdScience, MdHealthAndSafety } from 'react-icons/md'
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
+
+const HERO_SLIDES = [
+  { img: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80', label: 'Hematology Analyzer',     sub: 'CBC with 5-part differential'         },
+  { img: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80', label: 'Biochemistry Analyzer',    sub: 'LFT · KFT · Lipid Profile'            },
+  { img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80', label: 'Advanced Microscopy',      sub: 'Blood film & urine microscopy'         },
+  { img: 'https://images.unsplash.com/photo-1614308457932-e06c0a4f6a86?w=800&q=80', label: 'PCR / NAAT Machine',       sub: 'Molecular & infection testing'         },
+  { img: 'https://images.unsplash.com/photo-1587351021355-a479a299d2f9?w=800&q=80', label: 'ELISA Reader',             sub: 'Hormones · Thyroid · Hepatitis'        },
+]
 
 const SERVICES = [
   { icon: <MdBloodtype size={36} className="text-secondary" />, name: 'Blood Tests', desc: 'CBC, LFT, KFT, Blood Sugar, Hemoglobin, Lipid Profile & more.' },
@@ -86,6 +95,13 @@ function Stars({ count }) {
 // ─── Sections ─────────────────────────────────────────────────────────────────
 
 function HeroSection() {
+  const [heroSlide, setHeroSlide] = useState(0)
+
+  useEffect(() => {
+    const t = setInterval(() => setHeroSlide(s => (s + 1) % HERO_SLIDES.length), 3500)
+    return () => clearInterval(t)
+  }, [])
+
   return (
     <section
       className="relative min-h-[88vh] flex items-center overflow-hidden"
@@ -128,29 +144,54 @@ function HeroSection() {
           </div>
         </div>
 
-        {/* Doctor photo card */}
+        {/* Equipment slideshow card */}
         <div className="flex justify-center md:justify-end">
           <div className="relative">
             {/* Decorative ring */}
             <div className="absolute -inset-4 rounded-3xl border-2 border-white/10 pointer-events-none" />
-            <div className="rounded-3xl overflow-hidden w-72 md:w-80 lg:w-96 bg-white/5 border border-white/20 backdrop-blur-sm">
-              <img
-                src="/doctor-photo.jpg"
-                alt="Doctor at Aditya Patho Lab"
-                className="w-full object-cover"
-                style={{ minHeight: 400 }}
-                onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
-              />
-              {/* Fallback placeholder */}
-              <div style={{ display: 'none' }} className="flex-col items-center justify-center min-h-[400px] text-center p-8">
-                <div className="w-28 h-28 rounded-full bg-white/20 flex items-center justify-center mb-4 mx-auto">
-                  <FaUserMd size={56} className="text-white/60" />
+
+            {/* Slideshow container */}
+            <div className="rounded-3xl overflow-hidden w-72 md:w-80 lg:w-96 bg-white/5 border border-white/20 backdrop-blur-sm relative" style={{ minHeight: 400 }}>
+              {HERO_SLIDES.map((slide, i) => (
+                <div
+                  key={i}
+                  className="absolute inset-0 transition-opacity duration-700"
+                  style={{ opacity: i === heroSlide ? 1 : 0 }}
+                >
+                  <img
+                    src={slide.img}
+                    alt={slide.label}
+                    className="w-full h-full object-cover"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                  {/* Dark gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                  {/* Label */}
+                  <div className="absolute bottom-14 left-4 right-4">
+                    <p className="text-white font-bold text-base leading-tight">{slide.label}</p>
+                    <p className="text-white/60 text-xs mt-0.5">{slide.sub}</p>
+                  </div>
                 </div>
-                <p className="text-white font-bold text-lg">[DOCTOR_NAME]</p>
-                <p className="text-white/60 text-sm">MBBS, MD (Pathology)</p>
-                <p className="text-white/40 text-xs mt-3">📸 Replace /public/doctor-photo.jpg</p>
+              ))}
+
+              {/* Slide dots */}
+              <div className="absolute bottom-4 left-0 right-0 flex gap-1.5 justify-center z-10">
+                {HERO_SLIDES.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setHeroSlide(i)}
+                    className="rounded-full transition-all duration-300"
+                    style={{
+                      width: i === heroSlide ? 18 : 6,
+                      height: 6,
+                      background: i === heroSlide ? '#CC0000' : 'rgba(255,255,255,0.45)',
+                    }}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
+
             {/* Floating stat card */}
             <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
               <div className="bg-green-100 p-2 rounded-full"><FaCheckCircle className="text-green-500" size={20} /></div>

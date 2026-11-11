@@ -54,8 +54,8 @@ export default function Footer() {
             {/* Social icons */}
             <div className="flex gap-3 mt-5">
               {[
-                { href: 'https://facebook.com', Icon: FaFacebook,  label: 'Facebook'  },
-                { href: 'https://instagram.com', Icon: FaInstagram, label: 'Instagram' },
+                { href: 'https://www.facebook.com/adityapatho.labchapra', Icon: FaFacebook,  label: 'Facebook'  },
+                { href: 'https://www.instagram.com/aditya_patho_lab', Icon: FaInstagram, label: 'Instagram' },
                 { href: 'https://youtube.com',   Icon: FaYoutube,   label: 'YouTube'   },
                 { href: 'https://google.com',    Icon: FaGoogle,    label: 'Google'    },
               ].map(({ href, Icon, label }) => (
