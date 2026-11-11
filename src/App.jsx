@@ -33,7 +33,7 @@ export default function App() {
       <Footer />
       {/* Floating WhatsApp button */}
       <a
-        href="https://wa.me/91XXXXXXXXXX?text=Hello%2C%20I%20want%20to%20book%20an%20appointment%20at%20Aditya%20Patho%20Lab"
+        href="https://wa.me/919771643265?text=Hello%2C%20I%20want%20to%20book%20an%20appointment%20at%20Aditya%20Patho%20Lab"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-xl transition-transform hover:scale-110"

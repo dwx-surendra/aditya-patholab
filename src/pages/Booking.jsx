@@ -154,7 +154,7 @@ export default function Booking() {
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <FaPhone className="text-secondary flex-shrink-0" />
-                <a href="tel:+91XXXXXXXXXX" className="text-primary font-semibold hover:underline">+91 [PHONE_NUMBER]</a>
+                <a href="tel:+919771643265" className="text-primary font-semibold hover:underline">+91 97716 43265</a>
               </div>
               <div className="flex items-start gap-3 text-sm text-gray-600">
                 <FaClock className="text-secondary mt-1 flex-shrink-0" />
@@ -327,7 +327,7 @@ export default function Booking() {
                 {status === 'error' && (
                   <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">
                     <FaExclamationTriangle className="mt-0.5 flex-shrink-0" />
-                    <span>Oops! Something went wrong while sending your booking. Please call us directly at <a href="tel:+91XXXXXXXXXX" className="font-semibold underline">+91 [PHONE_NUMBER]</a> or try again.</span>
+                    <span>Oops! Something went wrong while sending your booking. Please call us directly at <a href="tel:+919771643265" className="font-semibold underline">+91 97716 43265</a> or try again.</span>
                   </div>
                 )}
 

@@ -43,9 +43,9 @@ export default function Navbar() {
               Mon–Sat 7 AM–8 PM &nbsp;|&nbsp; Sun 7 AM–12 PM
             </span>
           </div>
-          <a href="tel:+91XXXXXXXXXX" className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors font-semibold">
+          <a href="tel:+919771643265" className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors font-semibold">
             <FaPhone className="text-secondary" />
-            +91&nbsp;[PHONE_NUMBER]
+            +91&nbsp;97716 43265
           </a>
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function Navbar() {
 
           {/* Book button – desktop */}
           <div className="hidden lg:flex items-center gap-3">
-            <a href="tel:+91XXXXXXXXXX" className="text-sm font-semibold text-primary hover:text-primary-light transition-colors flex items-center gap-1.5">
+            <a href="tel:+919771643265" className="text-sm font-semibold text-primary hover:text-primary-light transition-colors flex items-center gap-1.5">
               <FaPhone size={13} /> Call Us
             </a>
             <Link to="/booking" className="btn-secondary text-sm py-2.5 px-5">
@@ -124,8 +124,8 @@ export default function Navbar() {
             </Link>
             <div className="pt-3 mt-1 border-t border-gray-100 text-sm text-gray-600 space-y-1.5">
               <p className="flex items-center gap-2"><FaMapMarkerAlt className="text-secondary" /> Ramlila Mathiya Road, Sadhapur, Chapra</p>
-              <a href="tel:+91XXXXXXXXXX" className="flex items-center gap-2 text-primary font-semibold">
-                <FaPhone className="text-secondary" /> +91 [PHONE_NUMBER]
+              <a href="tel:+919771643265" className="flex items-center gap-2 text-primary font-semibold">
+                <FaPhone className="text-secondary" /> +91 97716 43265
               </a>
             </div>
           </div>

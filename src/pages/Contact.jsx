@@ -70,8 +70,8 @@ export default function Contact() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {[
-            { Icon: FaPhone,          color: 'bg-blue-100 text-blue-600',   title: 'Phone',          lines: ['+91 [PHONE_NUMBER]', 'Call during lab hours'], href: 'tel:+91XXXXXXXXXX' },
-            { Icon: FaWhatsapp,       color: 'bg-green-100 text-green-600', title: 'WhatsApp',       lines: ['Chat with us', 'Quick booking & queries'], href: 'https://wa.me/91XXXXXXXXXX' },
+            { Icon: FaPhone,          color: 'bg-blue-100 text-blue-600',   title: 'Phone',          lines: ['+91 97716 43265', 'Call during lab hours'], href: 'tel:+919771643265' },
+            { Icon: FaWhatsapp,       color: 'bg-green-100 text-green-600', title: 'WhatsApp',       lines: ['Chat with us', 'Quick booking & queries'], href: 'https://wa.me/919771643265' },
             { Icon: FaEnvelope,       color: 'bg-red-100 text-red-600',     title: 'Email',          lines: ['[EMAIL_ADDRESS]', 'Response within 24 hrs'], href: 'mailto:[EMAIL_ADDRESS]' },
             { Icon: FaMapMarkerAlt,   color: 'bg-purple-100 text-purple-600',title: 'Location',      lines: ['Ramlila Mathiya Road,', 'Sadhapur, Chapra – 841301'], href: 'https://maps.google.com/?q=Aditya+Patho+Lab+Chapra+Bihar' },
           ].map(({ Icon, color, title, lines, href }) => (

@@ -114,7 +114,7 @@ function HeroSection() {
             <Link to="/booking" className="btn-secondary text-base px-8 py-3.5">
               Book Appointment <FaArrowRight size={14} />
             </Link>
-            <a href="tel:+91XXXXXXXXXX" className="btn-outline-white text-base px-8 py-3.5">
+            <a href="tel:+919771643265" className="btn-outline-white text-base px-8 py-3.5">
               <FaPhoneAlt size={14} /> Call Now
             </a>
           </div>
@@ -433,8 +433,8 @@ function CTABanner() {
           <Link to="/booking" className="bg-white text-secondary font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors shadow-xl text-base">
             Book Appointment Now →
           </Link>
-          <a href="tel:+91XXXXXXXXXX" className="btn-outline-white px-8 py-4 text-base">
-            <FaPhoneAlt /> Call +91 [PHONE_NUMBER]
+          <a href="tel:+919771643265" className="btn-outline-white px-8 py-4 text-base">
+            <FaPhoneAlt /> Call +91 97716 43265
           </a>
         </div>
         <div className="mt-8 flex flex-wrap justify-center gap-6 text-white/70 text-sm">

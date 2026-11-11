@@ -165,7 +165,7 @@ export default function Services() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <Link to="/booking" className="btn-primary text-sm py-2.5 px-6">Book Home Collection</Link>
-              <a href="tel:+91XXXXXXXXXX" className="btn-outline text-sm py-2.5 px-6">Call for Info</a>
+              <a href="tel:+919771643265" className="btn-outline text-sm py-2.5 px-6">Call for Info</a>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function Services() {
           <Link to="/booking" className="bg-white text-secondary font-bold px-8 py-3.5 rounded-lg hover:bg-gray-100 transition-colors shadow-lg inline-flex items-center gap-2">
             Book Now <FaArrowRight />
           </Link>
-          <a href="tel:+91XXXXXXXXXX" className="btn-outline-white px-8 py-3.5">Call +91 [PHONE_NUMBER]</a>
+          <a href="tel:+919771643265" className="btn-outline-white px-8 py-3.5">Call +91 97716 43265</a>
         </div>
       </section>
     </>
