@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { FaCheckCircle, FaArrowRight, FaUserMd, FaMicroscope, FaFlask, FaShieldAlt, FaAward, FaHeart } from 'react-icons/fa'
+import { FaCheckCircle, FaArrowRight, FaUserMd, FaMicroscope, FaFlask, FaShieldAlt, FaAward, FaHeart, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { MdHealthAndSafety } from 'react-icons/md'
 
 const MILESTONES = [
@@ -18,6 +19,57 @@ const EQUIPMENT = [
   { icon: <MdHealthAndSafety size={28} className="text-secondary" />, name: 'Bio-safety Cabinet', desc: 'Class II biological safety cabinet for specimen handling.' },
 ]
 
+const EQUIPMENT_SLIDES = [
+  {
+    img: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80',
+    name: 'Hematology Analyzer',
+    tag: 'CBC / Blood Count',
+    desc: '5-part differential CBC — full blood analysis with high precision in minutes.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80',
+    name: 'Biochemistry Auto-Analyzer',
+    tag: 'LFT · KFT · Lipid Profile',
+    desc: 'Fully automated for 100+ parameters including liver, kidney and metabolic panels.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80',
+    name: 'Advanced Microscopy',
+    tag: 'Blood Film · Urine Microscopy',
+    desc: 'High-resolution optics for detailed blood and urine microscopic examination.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80',
+    name: 'High-Speed Centrifuge',
+    tag: 'Sample Processing',
+    desc: 'Precision centrifugation for serum, plasma and specialized sample preparation.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1614308457932-e06c0a4f6a86?w=900&q=80',
+    name: 'PCR / NAAT Machine',
+    tag: 'Molecular Diagnostics',
+    desc: 'Molecular testing for infections, viral loads, TB and genetic disorders.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1587351021355-a479a299d2f9?w=900&q=80',
+    name: 'ELISA Reader',
+    tag: 'Immunoassay Testing',
+    desc: 'Hormone, thyroid, Hepatitis, HIV, and comprehensive allergy testing platform.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80',
+    name: 'Urine Analyzer',
+    tag: 'Urine Routine & Culture',
+    desc: 'Automated urine strip reader with integrated microscopy sediment analysis.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80',
+    name: 'Coagulation Analyzer',
+    tag: 'PT · APTT · D-Dimer',
+    desc: 'Clotting factor analysis for bleeding disorders and anticoagulation monitoring.',
+  },
+]
+
 const VALUES = [
   { icon: <FaHeart />,       title: 'Patient First',   desc: 'Every decision is made with patient comfort, dignity and safety at the centre.' },
   { icon: <FaCheckCircle />, title: 'Accuracy',        desc: 'Rigorous quality controls and repeat checks ensure every result is reliable.' },
@@ -26,6 +78,25 @@ const VALUES = [
 ]
 
 export default function About() {
+  const [slide, setSlide] = useState(0)
+  const [animating, setAnimating] = useState(false)
+
+  function goTo(next) {
+    setAnimating(true)
+    setTimeout(() => {
+      setSlide(next) // accepts both number and functional updater
+      setAnimating(false)
+    }, 300)
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => goTo(s => (s + 1) % EQUIPMENT_SLIDES.length), 3000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const prevSlide = () => goTo(s => (s - 1 + EQUIPMENT_SLIDES.length) % EQUIPMENT_SLIDES.length)
+  const nextSlide = () => goTo(s => (s + 1) % EQUIPMENT_SLIDES.length)
+
   return (
     <>
       {/* Page header */}
@@ -115,45 +186,109 @@ export default function About() {
         </div>
       </section>
 
-      {/* Doctor profile */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="rounded-3xl overflow-hidden bg-slate-100 shadow-xl aspect-[3/4] flex items-center justify-center">
-            <img
-              src="/doctor-photo.jpg"
-              alt="Lab Director – Aditya Patho Lab"
-              className="w-full h-full object-cover"
-              onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
-            />
-            <div style={{ display:'none' }} className="flex flex-col items-center justify-center w-full h-full text-center p-10 bg-gradient-to-b from-primary to-primary-dark text-white">
-              <FaUserMd size={80} className="text-white/40 mb-4" />
-              <p className="text-2xl font-bold">[DOCTOR_NAME]</p>
-              <p className="text-white/60 mt-1">📸 Add /public/doctor-photo.jpg</p>
-            </div>
+      {/* Equipment Showcase Carousel */}
+      <section className="py-20 px-4 bg-white overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="section-tag">Advanced Technology</span>
+            <h2 className="text-3xl font-extrabold text-primary">Our Diagnostic Equipment</h2>
+            <p className="text-gray-500 mt-3 max-w-xl mx-auto">
+              World-class instruments ensuring precision, speed and reliability — every sample, every time.
+            </p>
           </div>
-          <div>
-            <span className="section-tag">Meet the Expert</span>
-            <h2 className="text-3xl font-extrabold text-primary mb-2">[DOCTOR_NAME]</h2>
-            <p className="text-secondary font-semibold mb-4">MBBS, MD (Pathology) · Lab Director & Chief Pathologist</p>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Dr. [DOCTOR_NAME] is a qualified MD pathologist with over [X] years of experience in clinical and anatomical pathology. Having trained at premier medical institutions, they bring a meticulous approach to every test and report.
-            </p>
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Committed to community health in Chapra, Dr. [DOCTOR_NAME] founded Aditya Patho Lab with the goal of bringing city-quality diagnostics to Saran district at accessible prices.
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: 'Years Experience', value: '[X]+' },
-                { label: 'Tests Per Year',   value: '50,000+' },
-                { label: 'Qualification',    value: 'MBBS, MD' },
-                { label: 'Specialisation',   value: 'Pathology' },
-              ].map(({ label, value }) => (
-                <div key={label} className="bg-slate-50 rounded-xl p-4 text-center">
-                  <p className="text-2xl font-extrabold text-secondary">{value}</p>
-                  <p className="text-xs text-gray-500 mt-1">{label}</p>
+
+          {/* Carousel */}
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-slate-900" style={{ aspectRatio: '16/7' }}>
+            {/* Slides */}
+            {EQUIPMENT_SLIDES.map((eq, i) => (
+              <div
+                key={i}
+                className="absolute inset-0 transition-opacity duration-500"
+                style={{ opacity: i === slide && !animating ? 1 : 0, zIndex: i === slide ? 1 : 0 }}
+              >
+                <img
+                  src={eq.img}
+                  alt={eq.name}
+                  className="w-full h-full object-cover"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                />
+                {/* Dark gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                {/* Info overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                  <span className="inline-block text-xs font-bold tracking-widest uppercase text-secondary bg-secondary/20 px-3 py-1 rounded-full mb-3">
+                    {eq.tag}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-2">{eq.name}</h3>
+                  <p className="text-white/70 text-sm md:text-base max-w-lg">{eq.desc}</p>
                 </div>
+              </div>
+            ))}
+
+            {/* Flash pulse on slide change */}
+            <div
+              className="absolute inset-0 bg-white pointer-events-none transition-opacity duration-150 z-10"
+              style={{ opacity: animating ? 0.12 : 0 }}
+            />
+
+            {/* Prev / Next arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center transition-colors"
+              aria-label="Previous"
+            >
+              <FaChevronLeft size={16} />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center transition-colors"
+              aria-label="Next"
+            >
+              <FaChevronRight size={16} />
+            </button>
+
+            {/* Dot indicators */}
+            <div className="absolute top-4 right-4 z-20 flex gap-1.5">
+              {EQUIPMENT_SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  className="transition-all duration-300 rounded-full"
+                  style={{
+                    width: i === slide ? 20 : 8,
+                    height: 8,
+                    background: i === slide ? '#CC0000' : 'rgba(255,255,255,0.5)',
+                  }}
+                  aria-label={`Slide ${i + 1}`}
+                />
               ))}
             </div>
+
+            {/* Counter */}
+            <div className="absolute top-4 left-4 z-20 bg-black/40 text-white text-xs font-bold px-3 py-1 rounded-full">
+              {slide + 1} / {EQUIPMENT_SLIDES.length}
+            </div>
+          </div>
+
+          {/* Thumbnail strip */}
+          <div className="flex gap-3 mt-4 overflow-x-auto pb-2 scrollbar-hide">
+            {EQUIPMENT_SLIDES.map((eq, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className="flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 relative"
+                style={{
+                  width: 80,
+                  height: 56,
+                  outline: i === slide ? '3px solid #CC0000' : '3px solid transparent',
+                  outlineOffset: 2,
+                  opacity: i === slide ? 1 : 0.6,
+                }}
+                title={eq.name}
+              >
+                <img src={eq.img} alt={eq.name} className="w-full h-full object-cover" loading="lazy" />
+              </button>
+            ))}
           </div>
         </div>
       </section>
